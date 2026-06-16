@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IBM Games Dashboard</title>
+
     <style>
         /* General Styles */
         body {
@@ -115,6 +116,26 @@
             background-color: #0056b3;
         }
 
+        /* Search and Filter Styles */
+        .search-filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px auto;
+            padding: 15px;
+            background-color: #e0e0e0;
+            max-width: 650px;
+            border-radius: 5px;
+        }
+
+        .search-filter-container input,
+        .search-filter-container select {
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            min-width: 220px;
+        }
 
         /* New Boxes Styles */
         .smooth-boxes-container {
@@ -154,7 +175,6 @@
         }
 
         .xp-box {
-
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -169,18 +189,19 @@
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
             width: 15%;
             text-align: center;
-            z-index:9999;
+            z-index: 9999;
         }
 
         .xp-box p {
             margin: 0;
             padding: 0;
         }
-
     </style>
 </head>
+
 <body>
 <h1>IBM GAMES</h1>
+
 <div class="welcome-container">
     <h1>Welcome to the Dashboard</h1>
     <p>You have successfully logged in! Explore the features and functionalities of this secured application.</p>
@@ -188,45 +209,57 @@
     <a href="/profile">View Profile</a>
 </div>
 
+<!-- Search and Filter Feature -->
+<div class="search-filter-container">
+    <input type="text" id="searchInput" placeholder="Search">
+    <select id="categoryFilter">
+        <option value="all">All Categories</option>
+        <option value="fastest">Fastest Time Completion</option>
+        <option value="puzzles">Puzzles</option>
+        <option value="completed">Completed Games</option>
+        <option value="leaderboard">Leaderboard</option>
+        <option value="achievements">Achievements</option>
+    </select>
+</div>
+
 <!-- New Smooth Boxes -->
 <div class="smooth-boxes-container">
-    <div class="smooth-box">
+    <div class="smooth-box" data-category="fastest">
         <h2>Fastest Time Completion</h2>
         <p>View your best puzzle times</p>
         <a href="/box1">View</a>
     </div>
-    <div class="smooth-box">
+
+    <div class="smooth-box" data-category="puzzles">
         <h2>Puzzles</h2>
         <p>Engage your mind with fun puzzles.</p>
         <a href="/box2">View</a>
     </div>
-    <div class="smooth-box">
+
+    <div class="smooth-box" data-category="completed">
         <h2>Completed Games</h2>
         <p>View puzzles completed</p>
         <a href="/box3">View</a>
     </div>
-    <div class="smooth-box">
+
+    <div class="smooth-box" data-category="leaderboard">
         <h2>Leaderboard</h2>
         <p>View your rankings</p>
         <a href="/box4">View</a>
     </div>
-    <div class="smooth-box">
+
+    <div class="smooth-box" data-category="achievements">
         <h2>Achievements</h2>
         <p>Track your achievements</p>
         <a href="/box5">View</a>
     </div>
-
 </div>
 
-<div class="grid" id="gameGrid">
-
-</div>
+<div class="grid" id="gameGrid"></div>
 
 <div class="xp-box">
     <p>🔥 Level: <span th:text="${level} ?: 'N/A'"></span></p>
-    <p>
-        ⭐ XP: <span th:text="${xp + '/150'} ?: 'N/A'"></span>
-    </p>
+    <p>⭐ XP: <span th:text="${xp + '/150'} ?: 'N/A'"></span></p>
 </div>
 
 <!-- Daily Streak Floating Box -->
@@ -235,6 +268,34 @@
     <a href="/daily-streak" style="display: inline-block; margin-top: 8px; padding: 8px 16px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">View</a>
 </div>
 
+<script>
+    const searchInput = document.getElementById("searchInput");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const dashboardCards = document.querySelectorAll(".smooth-box");
+
+    function filterDashboardCards() {
+        const searchText = searchInput.value.toLowerCase();
+        const selectedCategory = categoryFilter.value;
+
+        dashboardCards.forEach(card => {
+            const title = card.querySelector("h2").textContent.toLowerCase();
+            const description = card.querySelector("p").textContent.toLowerCase();
+            const category = card.getAttribute("data-category");
+
+            const matchesSearch = title.includes(searchText) || description.includes(searchText);
+            const matchesCategory = selectedCategory === "all" || category === selectedCategory;
+
+            if (matchesSearch && matchesCategory) {
+                card.style.display = "";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    }
+
+    searchInput.addEventListener("input", filterDashboardCards);
+    categoryFilter.addEventListener("change", filterDashboardCards);
+</script>
 
 </body>
 </html>
