@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puzzle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        /* Puzzle Box */
+        .puzzle-box {
+            background: #fff;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Input and Button */
+        input[type="text"] {
+            padding: 10px;
+            margin: 10px 0;
+            width: 80%;
+            max-width: 300px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #0056b3;
+        }
+
+        .xp-box {
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            height: 30px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 40px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            width: 15%;
+            text-align: center;
+            z-index:9999;
+        }
+
+        .xp-box p {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="puzzle-box">
+    <h1>Puzzle: <span th:text="${puzzle.id}"></span></h1>
+    <p th:text="${puzzle.question}"></p>
+
+    <form action="/api/puzzles/check" method="post">
+        <input type="hidden" name="puzzleId" th:value="${puzzle.id}">
+        <input type="text" name="answer" placeholder="Your answer" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <a href="/box2" class="btn">Return to Puzzles</a>
+</div>
+
+<div class="xp-box">
+    <p>🔥 Level: <span th:text="${level} ?: 'N/A'"></span></p>
+    <p>
+        ⭐ XP: <span th:text="${xp + '/150'} ?: 'N/A'"></span>
+    </p>
+</div>
+
+</body>
+</html>

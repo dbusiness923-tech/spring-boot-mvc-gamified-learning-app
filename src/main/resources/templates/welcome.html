@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IBM Games Dashboard</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        /* Card Styles */
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .card img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .card h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .card a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .card a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Welcome Container Styles */
+        .welcome-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .welcome-container h1 {
+            margin: 0;
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .welcome-container p {
+            font-size: 1rem;
+            color: #666;
+            margin: 20px 0;
+        }
+
+        .welcome-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin: 10px 0;
+        }
+
+        .welcome-container a:hover {
+            background-color: #0056b3;
+        }
+
+
+        /* New Boxes Styles */
+        .smooth-boxes-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+
+        .smooth-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            width: 20%;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .smooth-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .smooth-box a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .smooth-box a:hover {
+            background-color: #0056b3;
+        }
+
+        .xp-box {
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            height: 30px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 40px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            width: 15%;
+            text-align: center;
+            z-index:9999;
+        }
+
+        .xp-box p {
+            margin: 0;
+            padding: 0;
+        }
+
+    </style>
+</head>
+<body>
+<h1>IBM GAMES</h1>
+<div class="welcome-container">
+    <h1>Welcome to the Dashboard</h1>
+    <p>You have successfully logged in! Explore the features and functionalities of this secured application.</p>
+    <a href="/logout">Logout</a>
+    <a href="/profile">View Profile</a>
+</div>
+
+<!-- New Smooth Boxes -->
+<div class="smooth-boxes-container">
+    <div class="smooth-box">
+        <h2>Fastest Time Completion</h2>
+        <p>View your best puzzle times</p>
+        <a href="/box1">View</a>
+    </div>
+    <div class="smooth-box">
+        <h2>Puzzles</h2>
+        <p>Engage your mind with fun puzzles.</p>
+        <a href="/box2">View</a>
+    </div>
+    <div class="smooth-box">
+        <h2>Completed Games</h2>
+        <p>View puzzles completed</p>
+        <a href="/box3">View</a>
+    </div>
+    <div class="smooth-box">
+        <h2>Leaderboard</h2>
+        <p>View your rankings</p>
+        <a href="/box4">View</a>
+    </div>
+    <div class="smooth-box">
+        <h2>Achievements</h2>
+        <p>Track your achievements</p>
+        <a href="/box5">View</a>
+    </div>
+
+</div>
+
+<div class="grid" id="gameGrid">
+
+</div>
+
+<div class="xp-box">
+    <p>🔥 Level: <span th:text="${level} ?: 'N/A'"></span></p>
+    <p>
+        ⭐ XP: <span th:text="${xp + '/150'} ?: 'N/A'"></span>
+    </p>
+</div>
+
+<!-- Daily Streak Floating Box -->
+<div style="position: fixed; top: 20px; left: 20px; background: white; padding: 20px; border-radius: 40px; box-shadow: 2px 2px 10px rgba(0,0,0,0.2); z-index:9999; text-align: center;">
+    <p style="margin: 0; font-weight: bold;">🔥 Daily Streak</p>
+    <a href="/daily-streak" style="display: inline-block; margin-top: 8px; padding: 8px 16px; background-color: #007bff; color: white; text-decoration: none; border-radius: 5px;">View</a>
+</div>
+
+
+</body>
+</html>

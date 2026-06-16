@@ -1,0 +1,5 @@
+1. All tests have been successful.
+2. Scrum master needs to review it.
+3.Feature needs to work across all intended devices.
+4. All bugs should be fixed.
+5. Must be accepted by our supervisor.
